@@ -1,1 +1,1 @@
-<h1>SOlving and Learging DSA</h1>
+<h1>Solving and Learging DSA</h1>

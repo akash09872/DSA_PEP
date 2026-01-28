@@ -12,6 +12,9 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
                 j++;
             }
         }
+        for(int i=m;i<m+n;i++){
+            nums1[i]=nums2[i-n];
+        }
 }
 
 void merge2(vector<int>  &nums1,int m,vector<int> &nums2,int n){

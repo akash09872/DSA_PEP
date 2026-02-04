@@ -39,14 +39,17 @@ void printList(node *head){
 
 void deleteLast(node* &head){
     node* temp=head;
-    node* prev=temp;
-    while(temp->next!=NULL){
-        prev=temp;
+    if(!head) return;
+    if(head->next==NULL){
+        delete head;
+        head=NULL;
+        return;
+    }
+    while(temp->next->next!=NULL){
         temp=temp->next;
     }
-    if(prev==temp) head=NULL;
-    prev->next=NULL;
-    delete temp;
+    delete temp->next;
+    temp->next=NULL;
 }
 void insertAtN(node * &head,int n,int val){
     node *temp=head;
@@ -61,14 +64,46 @@ void insertAtN(node * &head,int n,int val){
     nn->next=temp->next;
     temp->next=nn;
 }
+void deleteAtNth(node* &head, int n){
+    if(!head) return;
+    node *temp=head;
+    if(n==1){
+        head=head->next;
+        delete temp;
+        return;
+    }
+    int j=1;
+    while(j<n-1 && temp!=NULL){
+        j++;
+        temp=temp->next;
+    }
+    node *t=temp->next;
+    temp->next=temp->next->next;
+    delete t;
+}
 
+int countEven(node *head){
+    if(!head) return 0;
+    int count=0;
+    node *temp=head;
+    while(temp!=NULL){
+        if(temp->data%2==0) count++;
+        temp=temp->next;
+    }
+    return count;
+}
+
+bool search(node *head,int target){
+    if(!head) return false;
+    if(head->data==target) return true;
+    return search(head->next, target);
+}
 int main(){
     // int n;
     node * head=NULL;
-    for(int i=0;i<5;i++){
+    for(int i=0;i<5;i++) {
         isnertAtStart(head,i+1);
     }
-    deleteLast(head);
-    printList(head);
-
+    // deleteLast(head);
+    cout<<search(head,5);
 }

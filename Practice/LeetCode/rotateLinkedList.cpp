@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/rotate-list
+
 ListNode* rotate(ListNode* head, int k) {
     if(k==0) return head;
     ListNode* temp=head;

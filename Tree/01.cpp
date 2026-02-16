@@ -70,6 +70,24 @@ void levelOrder(Node* root){
         q.pop();
     }
 }
+void levelOrder2(Node *root){
+    if(!root) return;
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
+    while(!q.empty()){
+        Node* k=q.front();
+        q.pop();
+        if(k==NULL){
+            if(q.empty()) break;
+            cout<<endl;
+        }else{
+            cout<<k->data<<" ";
+            if(k->left!=NULL) q.push(k->left);
+            if(k->right!=NULL) q.push(k->right);
+        }
+    }
+}
 int countLeaf(Node* root){
     if(!root) return 0;
     if(root->left==NULL && root->right==NULL) return 1;

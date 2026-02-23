@@ -1,5 +1,5 @@
-#include<iostream>
-#include<StandardTemplateLibrary>
+#include<bits/stdc++.h>
+using namespace std;
 using namespace std;
 // https://www.geeksforgeeks.org/problems/k-largest-elements4206/1
 

@@ -1,34 +1,36 @@
-// https://www.geeksforgeeks.org/problems/prerequisite-tasks/1
+// https://www.geeksforgeeks.org/problems/course-schedule/1
+
 
 #include<bits/stdc++.h>
 using namespace std;
 class Solution {
   public:
-    bool isPossible(int N, int P, vector<pair<int, int> >& prerequisites) {
-        // Code here
-        vector<vector<int>> adj(N);
-        vector<int> indeg(N,0);
+    vector<int> findOrder(int n, vector<vector<int>> &prerequisites) {
+        // code here
+        vector<vector<int>> adj(n);
+        vector<int> indeg(n,0);
         for(auto i:prerequisites){
-            int v=i.first;
-            int u=i.second;
+            int u=i[1];
+            int v=i[0];
             adj[u].push_back(v);
             indeg[v]++;
         }
         queue<int> q;
-        for(int i=0;i<N;i++){
+        for(int i=0;i<n;i++){
             if(indeg[i]==0) q.push(i);
         }
-        int count=0;
+        vector<int> res;
         while(!q.empty()){
-            count++;
             int k=q.front();
+            res.push_back(k);
             for(int i:adj[k]){
                 indeg[i]--;
                 if(indeg[i]==0) q.push(i);
             }
             q.pop();
         }
+        if(res.size()!=n) return {};
+        return res;
         
-        return count==N;
     }
 };
